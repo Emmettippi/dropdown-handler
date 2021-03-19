@@ -24,7 +24,7 @@ public class DropdownServlet extends HttpServlet {
 		String parent = req.getParameter("dd_parent_code");
 		String page;
 		if (type != null && !type.trim().isEmpty()
-				|| language != null && !language.trim().isEmpty()) {
+			|| language != null && !language.trim().isEmpty()) {
 			List<Dropdown> dropdowns = dropdownDao.findByTypeAndLanguageAndParent(type, language, parent);
 			req.setAttribute("dropdowns", dropdowns);
 			req.setAttribute("dd_type", type);
