@@ -28,6 +28,7 @@ public class DropdownServlet extends HttpServlet {
 			List<Dropdown> dropdowns = dropdownDao.findByTypeAndLanguageAndParent(type, language, parent);
 			req.setAttribute("dropdowns", dropdowns);
 			req.setAttribute("dd_type", type);
+			req.setAttribute("parent", parent);
 			page = "pages/dropdown.jsp";
 		} else {
 			req.setAttribute("error", "I campi \"tipo\" e \"lingua\" sono obbligatori.");

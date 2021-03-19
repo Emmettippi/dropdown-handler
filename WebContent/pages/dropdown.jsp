@@ -9,10 +9,29 @@
 </head>
 <body>
 	<h1>DROPDOWN ${dd_type}</h1>
-	<select>
-		<c:forEach items="${dropdowns}" var="dd">
-			<option ${dd.selectable ? '' : 'disabled'} value="${dd.code}">${dd.value}</option>
-		</c:forEach>
-	</select>
+	<form action="/Dropdown/dropdown" method="GET">
+		<select name="dd_parent_code">
+			<c:forEach items="${dropdowns}" var="dd">
+				<option ${dd.selectable ? '' : 'disabled'} value="${dd.code}">${dd.value}</option>
+			</c:forEach>
+		</select>
+		<c:if test="${error != null}">
+			<p>${error}</p>
+		</c:if>
+		<c:if test="${parent == null || parent == ''}">
+			<div>
+				<label>Inserisci il codice della dropdown: </label> <input
+					type="text" name="dd_type" />
+			</div>
+			<div>
+				<label>Inserisci la lingua della dropdown: </label> <input
+					type="text" name="dd_language" />
+			</div>
+			<div>
+				<input type="submit" value="VISUALIZZA LA DIPENDENZA" />
+			</div>
+		</c:if>
+	</form>
+	<a href="/Dropdown/pages/index.jsp"> INDIETRO </a>
 </body>
 </html>
