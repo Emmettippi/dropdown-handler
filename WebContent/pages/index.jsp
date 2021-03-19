@@ -9,10 +9,10 @@
 </head>
 <body>
 	<h1>Benvenuto in DropdownServlet</h1>
-	<c:if test="${error}">
+	<c:if test="${error != null}">
 		<p>${error}</p>
 	</c:if>
-	<form action="" method="GET">
+	<form action="/Dropdown/dropdown" method="GET">
 		<div>
 			<label>Inserisci il codice della dropdown: </label> <input
 				type="text" name="dd_type" />

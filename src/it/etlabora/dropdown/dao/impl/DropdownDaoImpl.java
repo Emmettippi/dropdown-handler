@@ -19,15 +19,22 @@ public class DropdownDaoImpl implements DropdownDao {
 		try {
 			Connection conn = ConnectionUtils.getConnection();
 			String sql = "SELECT * \n"
-					+ "FROM dropdown \n"
-					+ "WHERE dd_active = 1 \n"
-					+ "  AND dd_type = ? \n"
-					+ "  AND dd_language = ? \n";
+				+ "FROM dropdown \n"
+				+ "WHERE dd_active = 1 \n"
+				+ "  AND dd_type = ? \n"
+				+ "  AND dd_language = ? \n";
 			if (parent != null && !parent.trim().isEmpty()) {
 				sql += "  AND dd_parent_code = ? \n";
 			}
 			sql += "ORDER BY dd_order";
 			PreparedStatement st = conn.prepareStatement(sql);
+
+			st.setString(1, type);
+			st.setString(2, language);
+			if (parent != null && !parent.trim().isEmpty()) {
+				st.setString(3, parent);
+			}
+
 			ResultSet resultSet = st.executeQuery();
 			while (resultSet.next()) {
 				dds.add(Dropdown.fromResultSet(resultSet));

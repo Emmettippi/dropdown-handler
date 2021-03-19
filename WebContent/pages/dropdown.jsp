@@ -11,7 +11,7 @@
 	<h1>DROPDOWN ${dd_type}</h1>
 	<select>
 		<c:forEach items="${dropdowns}" var="dd">
-			<option disabled="${dd.selectable ? null : ''}" value="${dd.code}">${dd.value}</option>
+			<option ${dd.selectable ? '' : 'disabled'} value="${dd.code}">${dd.value}</option>
 		</c:forEach>
 	</select>
 </body>
